@@ -152,8 +152,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun convertirNumero(): Long {
-        try {
-            return if (displayResultado.isNullOrBlank() || displayResultado!!.isEmpty()) {
+        return try {
+            if (displayResultado.isNullOrBlank() || displayResultado!!.isEmpty()) {
                 displayResultado = "0"
                 displayResultado?.toLong() ?: 0L
             } else {
@@ -161,7 +161,9 @@ class MainActivity : AppCompatActivity() {
             }
         } catch (exp: Exception) {
             limpiarCalculadora()
-            return 0L
+            0L
+        } finally {
+            limpiarCalculadora()
         }
     }
 
